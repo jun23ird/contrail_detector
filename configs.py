@@ -1,5 +1,18 @@
 import numpy as np
 
+
+class binary_classifier_config:
+    image_shape = np.arry([256, 256, 8, 3])
+
+    initial_learning_rate = 0.001
+    
+    batch_size = 16
+    buffer_size = 100
+    n_times_before = 4
+    n_times_after = 3
+    n_epochs = 60
+
+
 class unet_baseline_config:
 
 

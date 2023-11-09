@@ -19,6 +19,29 @@ from tensorflow.keras.applications import ResNet50, ResNet101
 import utils
 
 
+class BinaryClassifier(keras.Model):
+
+    def __init__(self):
+        super().__init__()
+        self.classifier = KM.Sequential([
+            KL.Conv2D(16, (3,3), padding='same', activation=KL.LeakyReLU(alpha=0.1), kernel_initializer=GlorotNormal(), input_shape=(256,256,3)),
+            KL.MaxPooling2D(2,2),
+            KL.Conv2D(32, (3,3), padding='same', activation=KL.LeakyReLU(alpha=0.1), kernel_initializer=GlorotNormal()),
+            KL.MaxPooling2D(2,2),
+            KL.Conv2D(64, (3,3), padding='same', activation=KL.LeakyReLU(alpha=0.1), kernel_initializer=GlorotNormal()),
+            KL.MaxPooling2D(2,2),
+            KL.Conv2D(128, (3,3), padding='same', activation=KL.LeakyReLU(alpha=0.1), kernel_initializer=GlorotNormal()),
+            KL.MaxPooling2D(2,2),
+            KL.Conv2D(256, (3,3), padding='same', activation=KL.LeakyReLU(alpha=0.1), kernel_initializer=GlorotNormal()),
+            KL.MaxPooling2D(2,2),
+            KL.Conv2D(512, (3,3), padding='same', activation=KL.LeakyReLU(alpha=0.1), kernel_initializer=GlorotNormal()),
+            KL.MaxPooling2D(2,2),
+
+            KL.Flatten(),
+            KL.Dense(512, activation=KL.LeakyReLU(alpha=0.1), kernel_initializer=GlorotNormal()),
+            KL.Dense(1, activation='sigmoid')
+])
+
 
 class DoubleConv(keras.Model):
     """(convolution => [BN] => ReLU) * 2"""
