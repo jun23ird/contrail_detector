@@ -2,7 +2,7 @@ import numpy as np
 
 
 class binary_classifier_config:
-    image_shape = np.arry([256, 256, 8, 3])
+    image_shape = np.array([256, 256, 8, 3])
 
     initial_learning_rate = 0.001
     
